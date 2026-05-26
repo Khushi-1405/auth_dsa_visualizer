@@ -761,7 +761,7 @@ function Home({setAlgorithm}) {
             </div>
 
             <div className='relative z-10 flex flex-col md:flex-row text-sm justify-between items-center mt-10 w-full text-gray-500'>
-              <p className='mb-2'>© 2024 CodeViz. All rights reserved.Harsh Dubey.</p>
+              <p className='mb-2'>© 2024 CodeViz. All rights reserved.Khushi Dubey.</p>
               <ul className='flex space-x-4 '>
                 <li>Privacy policy</li>
                 <li>Terms of Service</li>

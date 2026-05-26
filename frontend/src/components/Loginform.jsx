@@ -15,8 +15,8 @@ function AuthForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Dynamic API URL based on mode
-  const API_URL = isLogin
-    ? "http://localhost:5000/api/auth/login"
+  const API_URL = isLogin 
+    ? "http://localhost:5000/api/auth/login" 
     : "http://localhost:5000/api/auth/signup";
 
   const handleSubmit = async (e) => {
@@ -26,15 +26,9 @@ function AuthForm() {
     const payload = isLogin ? { email, password } : { name, email, password };
 
     try {
-      // 1. Create the base URL based on the mode
-      const endpoint = isLogin ? "/api/auth/login" : "/api/auth/signup";
-
-      // 2. Combine the environment variable with the endpoint
-      const res = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`, {
+      const res = await fetch(API_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
@@ -80,16 +74,15 @@ function AuthForm() {
       className="h-[87vh] flex gap-5 items-center justify-center overflow-hidden"
     >
       <motion.div className="rounded-2xl flex flex-col justify-center items-center space-y-6 p-4 h-[85%] w-[80%] md:w-[60%] lg:h-[75%] lg:w-[45%] shadow-md shadow-pink-500 bg-[#020617]/50 backdrop-blur-sm">
+        
         {/* Dynamic Heading */}
         <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-center">
           {isLogin ? "Login now" : "Create Account"}
         </h1>
 
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col w-full relative z-5"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col w-full relative z-5">
           <div className="flex flex-col gap-6 justify-center items-center container m-auto w-[90%] my-2">
+            
             <AnimatePresence mode="wait">
               {!isLogin && (
                 <motion.input
@@ -133,12 +126,10 @@ function AuthForm() {
               disabled={isSubmitting}
               type="submit"
               className={`p-2 rounded-2xl text-white font-semibold text-sm md:text-xl w-[60%] shadow-purple-900 shadow-md ${
-                isSubmitting
-                  ? "bg-gray-600"
-                  : "bg-gradient-to-r from-purple-600 to-pink-600"
+                isSubmitting ? "bg-gray-600" : "bg-gradient-to-r from-purple-600 to-pink-600"
               }`}
             >
-              {isSubmitting ? "Processing..." : isLogin ? "Login" : "Sign Up"}
+              {isSubmitting ? "Processing..." : (isLogin ? "Login" : "Sign Up")}
             </motion.button>
           </div>
         </form>
@@ -146,7 +137,7 @@ function AuthForm() {
         {/* Toggle Button */}
         <div className="text-gray-400 font-medium">
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-          <button
+          <button 
             onClick={() => setIsLogin(!isLogin)}
             className="text-pink-500 font-bold hover:underline underline-offset-4"
           >
