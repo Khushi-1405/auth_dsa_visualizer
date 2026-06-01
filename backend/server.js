@@ -3,22 +3,21 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
-import authRoutes from './routes/auth.js'; // Import your auth routes
+import authRoutes from './routes/auth.js'; 
 
 
-dotenv.config();   // Load Environment Variables
-connectDB();
+dotenv.config();
 
 const app = express();
 
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173" // Replace with your Vercel URL after deployment
+  origin: "http://localhost:5173" 
 }));
 
 // Routes
-// We use the imported authRoutes instead of 'require'
+// authRoutes instead of 'require'
 app.use("/api/auth", authRoutes);
 
 // Test Route
